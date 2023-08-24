@@ -1,3 +1,6 @@
+## Lab02 - Modelagem Conceitual de Refeições em um Restaurante
+
+
 ## Equipe: VIRUS
 
 
