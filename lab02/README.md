@@ -13,6 +13,10 @@
 ### Modelo conceitual ER
 
 
+<img src="images/diagrama_entidade_relac.png" width="400px" height="auto">
+
 
 ### Modelo conceitual UML
 
+
+<img src="images/diagrama-uml.png" width="400px" height="auto">
