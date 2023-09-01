@@ -9,8 +9,11 @@
 
 ## Modelo conceitual ER revisado
 
+<img src="imagens/modeloERatualizado.png" width="400px" height="auto">
+
 ## Modelo conceitual UML revisado
 
+<img src="imagens/diagrama-uml-refeicao-atualizado.png" width="400px" height="auto">
 
 ## Mapeamento para o modelo relacional
 
