@@ -7,7 +7,8 @@
 - Pietro Grazzioli Golfeto - 223694 
 - Vitor Rodrigues Zanata da Silva - 231718 
 
-## Modelo relacional dos diagramas do lab02
+## Modelo relacional atualizado
+<img src="images/diagrama_entidade_relac.png" width="400px" height="auto">
 
 CARDAPIO_DIARIO(_data_, cafe, almoco, janta)
     cafe chave estrangeira -> REFEICAO(id)
