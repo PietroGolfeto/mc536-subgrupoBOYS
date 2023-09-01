@@ -7,8 +7,12 @@
 - Pietro Grazzioli Golfeto - 223694 
 - Vitor Rodrigues Zanata da Silva - 231718 
 
-## Modelo relacional atualizado
-<img src="imagens/diagrama-uml-refeicao-18-08.png" width="400px" height="auto">
+## Modelo conceitual ER revisado
+
+## Modelo conceitual UML revisado
+
+
+## Mapeamento para o modelo relacional
 
 CARDAPIO_DIARIO(_data_, cafe, almoco, janta)
     cafe chave estrangeira -> REFEICAO(id)
