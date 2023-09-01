@@ -8,7 +8,7 @@
 - Vitor Rodrigues Zanata da Silva - 231718 
 
 ## Modelo relacional atualizado
-<img src="images/diagrama_entidade_relac.png" width="400px" height="auto">
+<img src="imagens/diagrama-uml-refeicao-18-08.png" width="400px" height="auto">
 
 CARDAPIO_DIARIO(_data_, cafe, almoco, janta)
     cafe chave estrangeira -> REFEICAO(id)
