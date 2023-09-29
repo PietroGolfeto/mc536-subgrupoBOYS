@@ -6,3 +6,42 @@
 - Lucas Gabriel Monteiro Da Costa - 183967 
 - Pietro Grazzioli Golfeto - 223694 
 - Vitor Rodrigues Zanata da Silva - 231718 
+
+## Soluções
+
+### Ex1:
+  drop view numReceitas if exists;
+  
+  create view numReceitas as
+  select FCID_Code, count(distinct Food_Code) as num from Recipes group by FCID_Code
+  
+  drop view Metricas if exists;
+  create view Metricas as  
+  
+  select F.FCID_Code, F.FCID_Desc, F.CGN, F.CG_Subgroup,
+  count(distinct I.seqn) as Popularidade, sum(I.Intake) as Intake_Sum,
+  sum(I.Intake)/count(distinct I.seqn) as Intake_AVG,
+  sum(I.Intake_BW)/count(distinct I.seqn) as Intake_AVG_BW,
+  N.num as Recipes
+  
+  from FCID_Description F, Intake I, numReceitas N  
+  where F.FCID_Code = I.FCID_Code and F.FCID_Code = N.FCID_Code  
+  group by I.FCID_Code
+
+### Ex2:
+  --Top 25 mais consumidos em quantidade
+  drop view Qtd if exists;
+  create view Qtd as select * from Metricas order by Intake_sum desc limit 25
+
+  --Top 25 mais consumidos em numero de pessoas
+  drop view Pop if exists;
+  create view Pop as select * from Metricas order by Popularidade desc limit 25
+
+  --Relação entre os dois
+  select Q.FCID_Code, Q.FCID_Desc, Q.Popularidade, Q.Intake_Sum, Q.Intake_AVG, Q.Intake_AVG_BW, Q.Recipes
+  from Qtd Q, Pop P where Q.FCID_Code = P.FCID_Code
+
+### Ex3:
+
+### Ex4:
+  
