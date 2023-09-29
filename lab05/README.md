@@ -58,6 +58,21 @@
               )
 
 
+### Ex4:
+  Deve-se considerar as seguintes métricas:
+
+* Alimentos mais consumidos por cada consumidor
+* Grupos mais consumidos por cada consumidor 
+* Categoria de consumo de cada consumidor, classificado em vegano, vegetariano e carnívoro
+* Consumo (em gramas) médio de cada pessoa
+* Indicador de nutrição e saúde a partir de uma avaliação do consumo em gramas médio por peso corporal.
+
+--Avaliação dos alimentos mais consumidos por uma pessoa:  
+drop view Cons if exists;  
+create view Cons as
+
+
+
   -- Alimento mais consumido por consumidor  
   drop view Cons if exists;  
   create view Cons as
@@ -72,6 +87,3 @@
                group by J.FCID_Code
                order by sum(J.Intake) desc
               )
-
-### Ex4:
-  
