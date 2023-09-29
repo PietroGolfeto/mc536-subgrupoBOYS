@@ -61,29 +61,21 @@
 ### Ex4:
   Deve-se considerar as seguintes métricas:
 
-* Alimentos mais consumidos por cada consumidor
-* Grupos mais consumidos por cada consumidor 
-* Categoria de consumo de cada consumidor, classificado em vegano, vegetariano e carnívoro
-* Consumo (em gramas) médio de cada pessoa
-* Indicador de nutrição e saúde a partir de uma avaliação do consumo em gramas médio por peso corporal.
+* Alimentos mais consumidos por cada consumidor permitindo comparar as preferencias alimentares de cada perfil.  
+* Categoria de consumo de cada consumidor, classificado em vegano, vegetariano e carnívoro  
+* Indicador de nutrição, desnutrição e saúde a partir de uma avaliação do consumo em gramas médio por peso corporal de cada pessoa.
 
---Avaliação dos alimentos mais consumidos por uma pessoa:  
+-- Alimento mais consumido por pessoa  
 drop view Cons if exists;  
 create view Cons as
 
+select I.seqn, F.CGN
 
+from Intake I, FCID_Description F
 
-  -- Alimento mais consumido por consumidor  
-  drop view Cons if exists;  
-  create view Cons as
-  
-  select I.seqn, F.CGN
-  
-  from Intake I, FCID_Description F
-  
-  where I.FCID_Code = F.FCID_Code  
-  and F.CGN = (select top(1) J.FCID_Code from Intake J
-               where and J.seqn = I.seqn
-               group by J.FCID_Code
-               order by sum(J.Intake) desc
-              )
+where I.FCID_Code = F.FCID_Code  
+and F.CGN = (select top(1) J.FCID_Code from Intake J
+             where and J.seqn = I.seqn
+             group by J.FCID_Code
+             order by sum(J.Intake) desc
+            )
