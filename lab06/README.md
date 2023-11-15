@@ -1,19 +1,35 @@
 ## Equipe: VIRUS
 
+## Subgrupo: A (BOYS)
 
-## Subgrupo: A  (BOYS)
-
-- Lucas Gabriel Monteiro Da Costa - 183967 
-- Pietro Grazzioli Golfeto - 223694 
-- Vitor Rodrigues Zanata da Silva - 231718 
-
+- Lucas Gabriel Monteiro Da Costa - 183967
+- Pietro Grazzioli Golfeto - 223694
+- Vitor Rodrigues Zanata da Silva - 231718
 
 ## Soluções
 
 ### Ex1:
 
+    // Iniciaizando Drug e Pathology
+    LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/santanche/lab2learn/master/data/faers-2017/drug.csv' AS line
+    CREATE (:Drug {code: line.code, name: line.name})
+
+    CREATE INDEX for (d:Drug) ON (d.code)
+
+    LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/santanche/lab2learn/master/data/faers-2017/pathology.csv' AS line
+    CREATE (:Pathology { code: line.code, name: line.name})
+
+    CREATE INDEX for (p:Pathology) ON (p.code)
+
+    // Patologias tratadas pela mesma droga
+    MATCH (d:Drug {code: line.codedrug})
+    MATCH (p:Pathology {code: line.codepathology})
+    MERGE (p)-[t:TreatedBy]->(d)
+    ON CREATE SET t.weight=1
+    ON MATCH SET t.weight=t.weight+1;
 
 ### Ex2:
+
     // Iniciaizando Drug e Pathology
     LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/santanche/lab2learn/master/data/faers-2017/drug.csv' AS line
     CREATE (:Drug {code: line.code, name: line.name})
@@ -52,4 +68,4 @@
     where t.weight > 10
     return dr, t, pat
 
-### Ex3: 
+### Ex3:
