@@ -13,10 +13,9 @@
 ### Questões a serem analisadas
 
 Pergunta 1: Quais receitas são veganas (sem cropgroup animal)?
-Pergunta 2: Qual o número de ingredientes em cada receita?
-Pergunta 3: Quais são os ingredientes mais usados em conjunto (presentes nas mesmas receitas)?
-Pergunta 4: Que receitas são mais similares (muitos ingredientes em comum)?
+Pergunta 2: Quais são os ingredientes mais usados em conjunto (presentes nas mesmas receitas)?
+Pergunta 3: Que receitas são mais similares (muitos ingredientes em comum)?
 
 ### Modelo em grafos
 
-<img src="lab07.png" width="400px" height="auto">
+<img src="images/lab07.png" width="400px" height="auto">
