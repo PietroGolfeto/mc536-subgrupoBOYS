@@ -19,4 +19,4 @@ Pergunta 4: Que receitas são mais similares (muitos ingredientes em comum)?
 
 ### Modelo em grafos
 
-<img src="images/lab07.png" width="400px" height="auto">
+<img src="lab07.png" width="400px" height="auto">
