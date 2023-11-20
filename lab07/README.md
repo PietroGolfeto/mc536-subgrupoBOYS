@@ -16,9 +16,9 @@
 
 ### Perguntas de pesquisa/análise
 
-Pergunta 1: Quais receitas são veganas (sem cropgroup animal)?
-Pergunta 2: Quais são os ingredientes mais usados em conjunto (presentes nas mesmas receitas)?
-Pergunta 3: Que receitas são mais similares (muitos ingredientes em comum)?
+- Pergunta 1: Quais receitas são veganas (sem cropgroup animal)?
+- Pergunta 2: Quais são os ingredientes mais usados em conjunto (presentes nas mesmas receitas)?
+- Pergunta 3: Que receitas são mais similares (muitos ingredientes em comum)?
 
 ### Implementação do grupo para o modelo lógico
 
