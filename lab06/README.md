@@ -6,10 +6,14 @@
 - Pietro Grazzioli Golfeto - 223694
 - Vitor Rodrigues Zanata da Silva - 231718
 
-## Soluções
+## Tarefa de Cypher sobre Patologias, Medicamentos e Efeitos Colaterais
 
-### Ex1:
+## Exercício
 
+Faça a projeção em relação a Patologia, ou seja, conecte patologias que são tratadas pela mesma droga.
+
+### Resolução
+~~~cypher
     // Iniciaizando Drug e Pathology
     LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/santanche/lab2learn/master/data/faers-2017/drug.csv' AS line
     CREATE (:Drug {code: line.code, name: line.name})
@@ -27,9 +31,16 @@
     MERGE (p)-[t:TreatedBy]->(d)
     ON CREATE SET t.weight=1
     ON MATCH SET t.weight=t.weight+1;
+~~~
 
-### Ex2:
+# Trabalhando com Efeitos Colaterais
 
+## Exercício
+
+Construa um grafo ligando os medicamentos aos efeitos colaterais (com pesos associados) a partir dos registros das pessoas, ou seja, se uma pessoa usa um medicamento e ela teve um efeito colateral, o medicamento deve ser ligado ao efeito colateral.
+
+### Resolução
+~~~cypher
     // Iniciaizando Drug e Pathology
     LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/santanche/lab2learn/master/data/faers-2017/drug.csv' AS line
     CREATE (:Drug {code: line.code, name: line.name})
@@ -67,8 +78,16 @@
     match (dr:Drug)-[t:HasSideEffect]->(pat:Pathology)
     where t.weight > 10
     return dr, t, pat
+~~~
 
-### Ex3:
+## Exercício
+
+Que tipo de análise interessante pode ser feita com esse grafo?
+
+Proponha um tipo de análise e escreva uma sentença em Cypher que realize a análise.
+
+### Resolução
+~~~cypher
     // Podemos encontrar os efeitos colaterais mais recorrentes e prováveis de ocorrerem novamente de acordo com a doença, ao efetuar seu tratamento.
 
     // Iniciaizando Drug e Pathology
@@ -116,3 +135,4 @@
     MERGE (pat)-[tre:TreatmentSideEffect]->(side)
     ON CREATE SET tre.weight=1
     ON MATCH SET tre.weight=tre.weight+1
+~~~
