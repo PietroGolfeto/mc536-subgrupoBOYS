@@ -26,6 +26,7 @@ Faça a projeção em relação a Patologia, ou seja, conecte patologias que sã
     CREATE INDEX for (p:Pathology) ON (p.code)
 
     // Patologias tratadas pela mesma droga
+    LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/santanche/lab2learn/master/data/faers-2017/drug-use.csv' AS line
     MATCH (d:Drug {code: line.codedrug})
     MATCH (p:Pathology {code: line.codepathology})
     MERGE (p)-[t:TreatedBy]->(d)
