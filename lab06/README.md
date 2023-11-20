@@ -68,17 +68,17 @@ Construa um grafo ligando os medicamentos aos efeitos colaterais (com pesos asso
     // Relacionando drogas e seus side effects
     MATCH (s:SideEffect)
     MATCH (p:DrugUse)
-    match(pat:Pathology {code: s.codepathology})
-    match(dr:Drug {code: p.codedrug})
+    MATCH (pat:Pathology {code: s.codepathology})
+    MATCH (dr:Drug {code: p.codedrug})
     WHERE s.idperson = p.idperson
     MERGE (dr)-[t:HasSideEffect]->(pat)
     ON CREATE SET t.weight=1
     ON MATCH SET t.weight=t.weight+1
 
     // Visualizando
-    match (dr:Drug)-[t:HasSideEffect]->(pat:Pathology)
-    where t.weight > 10
-    return dr, t, pat
+    MATCH (dr:Drug)-[t:HasSideEffect]->(pat:Pathology)
+    WHERE t.weight > 10
+    RETURN dr, t, pat
 ~~~
 
 ## Exercício
