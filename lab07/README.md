@@ -20,9 +20,10 @@
 - Pergunta 2: Quais são os ingredientes mais usados em conjunto (presentes nas mesmas receitas)?
 - Pergunta 3: Que receitas são mais similares (muitos ingredientes em comum)?
 
-### Implementação do grupo para o modelo lógico
+### Protótipo de implementação do modelo lógico
 
 ~~~cypher
+    # Pergunta 1
     LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/santanche/lab2learn/master/data/food-intake/basics/Food_Code_Description.csv" AS line
     CREATE (:Recipe {Food_Code: line.Food_Code, Food_Desc: line.Food_Desc})
     
@@ -31,7 +32,6 @@
     LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/santanche/lab2learn/master/data/food-intake/basics/FCID_Cropgroup_Description.csv" AS line
     #CG auxiliar
     CREATE (:CG {CGN: line.CGN, CGL: line.CGL, Description: line.Crop_Group_Description});
-    
     
     MATCH (n:CG) WHERE (n.CGN=n.CGL)
     CREATE (:Crop_Group {CGN: n.CGN, Crop_Group_Description: n.Description, Is_Vegan: 0});
@@ -42,7 +42,8 @@
     MATCH (k:CG) DELETE (k)
     
     CREATE INDEX FOR (cg:Crop_Group) on (cg.CGN)
-    
+
+    # Pergunta 2
     #Food_Group
     LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/santanche/lab2learn/master/data/food-intake/basics/FCID_Code_Description.csv" AS line
     CREATE (fcid:Ingredient {FCID_Code:line.FCID_Code, FCID_Desc:line.FCID_Desc, CGN: line.cgn})
@@ -51,9 +52,9 @@
     MATCH (cg:Crop_Group {CGN: fcid.CGN})
     MERGE (fcid)-[f:Food_Group]->(cg)
     
-    
     CREATE INDEX FOR (fcid:Ingredient) ON (fcid.FCID_Code)
     
+    # Pergunta 3
     # Mod_Code = 0 -> Receitas que não são modificadas (i.e, ignora-se as receitas modificadas)
     #Recipes_Of_Ingredient/Ingredient_Of_Recipes
     LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/santanche/lab2learn/master/data/food-intake/recipes/Recipes_WWEIA_FCID_0510.csv" AS line
